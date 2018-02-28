@@ -110,7 +110,7 @@ height: 574px;
 .cardhead{
   Font-size: 1.1em;
   font-weight: bold;
-  color: #ffffff;
+  color: ##a6a6a6;
 }
 
 
@@ -200,8 +200,8 @@ footer{
 
 .redtextmarking{
   opacity: 0.6;
-  background-color: #ff0000;
-  color:#ffffff;
+  background-color: #add8e6;
+  color: #33333;
   }
 
 
