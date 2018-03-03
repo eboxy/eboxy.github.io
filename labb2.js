@@ -1,23 +1,39 @@
-function myFunction() {
-    let pee = document.getElementById("dunk");
-    pee.style.backgroundColor = "hotpink";
+console.log('Det fungerar!');
 
-    let el1 = document.getElementById('nisse'); // hitta rätt element
-    let el2 = document.createElement('span');
-    el2.innerHTML = ' - HACKED';
-    el2.style.fontWeight = 'bold';
+let url = 'https://www.forverkliga.se/JavaScript/api/crud.php';
+let op = 'select';
+let key = 'fzJ8Z';
+//lat 57.678509 long 12.000214
+let finalUrl = `${url}?op=${op}&key=${key}`;
+console.log('Hämtar data från: ' + finalUrl);
+fetch(finalUrl)
+.then( response => {
+	console.log('Svar från servern:', response);
+	return response.json();
+} )
+.then(function(obj){
 
-    el1.appendChild(el2);
+  console.log('svar som objekt',obj);
+	let output = document.getElementById('response');
 
-  let btn = document.getElementById("btn");
-    btn.addEventListener("click", callback);
+	let books = obj;
 
+console.log('map kontroll',books);
+
+/*
+for(let x=0;x < obj.length;x++){
+output.innerText += obj[0];
 }
+*/
 
 
-//alert("welcome to Litterary memories");
+output.innerText = `tjo: ${books[1].title}`.toString();
 
-let callback = function(event) {
-//console.log('Something happened');
-alert("tjoohoo  i superryjmden");
-};
+
+ })
+
+
+
+.catch( message => {
+	console.log('Något gick fel: ' + message);
+})
