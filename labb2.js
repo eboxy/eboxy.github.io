@@ -1,4 +1,8 @@
+
 window.addEventListener('load', function() {
+
+	let button = document.getElementById('btn');
+				button.addEventListener('click', function() {
 
 //getBooks(){
 
@@ -24,24 +28,34 @@ fetch(finalUrl)
 
 
 
+
 status.innerHTML = "<strong>Status:</strong> " + obj.status + "<br><br>"
 + "<strong>Meddelande:</strong> " + obj.message;
 
 
+if(obj.status === "success")
+{
+
+		let author1 = obj.data[1].author;
+		let title1 = obj.data[1].title;
+		let author2 = obj.data[0].author;
+		let title2 = obj.data[0].title;
+
+		let text = author1 + ": " + title1;
+		let text2 = author2 + ": " + title2;
+
+		let restext = "<ul><li>" + text + "</ul></li>";
+		let restext2 = "<ul><li>" + text2 + "</ul></li>";
+
+		output.innerHTML = restext + restext2;
+		
+}
+else if (obj.status === "error") {
+	  output.innerHTML = "";
+}
 
 
-let author1 = obj.data[1].author;
-let title1 = obj.data[1].title;
-let author2 = obj.data[0].author;
-let title2 = obj.data[0].title;
 
-let text = author1 + ": " + title1;
-let text2 = author2 + ": " + title2;
-
-let restext = "<ul><li>" + text + "</ul></li>";
-let restext2 = "<ul><li>" + text2 + "</ul></li>";
-
-output.innerHTML = restext + restext2;
 
 
 	})
@@ -57,6 +71,6 @@ output.innerHTML = restext + restext2;
 	console.log('Något gick fel: ' + message);
 });
 
-//});
+});
 
 });
