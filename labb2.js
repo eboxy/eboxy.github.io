@@ -1,3 +1,7 @@
+window.addEventListener('load', function() {
+
+//getBooks(){
+
 console.log('Det fungerar!');
 
 let url = 'https://www.forverkliga.se/JavaScript/api/crud.php';
@@ -15,25 +19,44 @@ fetch(finalUrl)
 
   console.log('svar som objekt',obj);
 	let output = document.getElementById('response');
-
-	let books = obj;
-
-console.log('map kontroll',books);
-
-/*
-for(let x=0;x < obj.length;x++){
-output.innerText += obj[0];
-}
-*/
+	let status = document.getElementById('status');
 
 
-output.innerText = `tjo: ${books[1].title}`.toString();
 
 
- })
+status.innerHTML = "<strong>Status:</strong> " + obj.status + "<br><br>"
++ "<strong>Meddelande:</strong> " + obj.message;
+
+
+
+
+let author1 = obj.data[1].author;
+let title1 = obj.data[1].title;
+let author2 = obj.data[0].author;
+let title2 = obj.data[0].title;
+
+let text = author1 + ": " + title1;
+let text2 = author2 + ": " + title2;
+
+let restext = "<ul><li>" + text + "</ul></li>";
+let restext2 = "<ul><li>" + text2 + "</ul></li>";
+
+output.innerHTML = restext + restext2;
+
+
+	})
+
+
+
+
+// })
 
 
 
 .catch( message => {
 	console.log('Något gick fel: ' + message);
-})
+});
+
+//});
+
+});
