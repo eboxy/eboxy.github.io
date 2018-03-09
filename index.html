@@ -19,10 +19,12 @@
     <div class="row">
             <div class="colleft">
                 <nav class="oval">
-                    <a target="_blank" href="">link 1</a>
-                    <a target="_blank" href="">link 2</a>
-                    <a target="_blank" href="">link 3</a>
-                    <a target="_blank" href="">link 4</a>
+                    <a href="#" onclick="toggleFunctionalities('showAPiKey')">APIKey</a>
+                    <a href="#" onclick="toggleFunctionalities('showGetBookList')">List</a>
+                    <a href="#" onclick="toggleFunctionalities('showUpdateBook')">Update</a>
+                    <a href="#" onclick="toggleFunctionalities('showAddBook')">Add</a>
+                    <a href="#" onclick="toggleFunctionalities('showDeleteBook')">Delete</a>
+
                 </nav>
             </div>
 
@@ -49,7 +51,7 @@
 
           <!-- hömta api-nyckel -->
 
-          <div id="getAPiKeyVisible">
+          <div id="showAPiKey">
           <p>
             <h2>Status för hämtning av API-nyckel</h2>
               <div id="statusApiKey"></div>
@@ -67,11 +69,9 @@
 
 
 
-         <hr>
+        <!-- hömta boklista -->
 
-
-          <!-- hömta boklista -->
-
+          <span id="showGetBookList">
           <p>
             <h2>Status för hämtning av boklista</h2>
               <div id="status"></div>
@@ -83,17 +83,18 @@
 
           <p>
             <h2>Boklista</h2>
-            <div id="response"></div
+                <div id="response">
+                </div
           </p>
+        </span>
 
 
-          <hr>
 
+        <!-- uppdatera bok -->
 
-           <!-- uppdatera boklista -->
+          <span id="showUpdateBook">
 
-
-            <section id="form-2" class="form-2">
+          <section id="form-2" class="form-2">
             <form class="forms">
               <h4 class="crudType"> Update Book </h4>
               <input class="textInput" id="updateBookId" type="text" placeholder="Enter id"><br><br>
@@ -109,47 +110,50 @@
             </form>
           </section>
 
+        </span>
 
-          <hr>
 
+        <!-- lägga till en bok -->
 
-           <!-- lägga till en bok -->
+             <span id="showAddBook">
 
            <section id="form-1" class="form-1">
-                       <form class="forms">
-                         <h4 class="crudType"> Save Book </h4>
-                         <input class="textInput" id="input1" type="text" placeholder="Enter title">
-                         <input class="textInput" id="input2" type="text" placeholder="Enter author">
-                         <div class="button-wrap">
-                           <button id="addBtn" class="button">Add</button>
-                           <button id="reqapikey" class="button">Begär ny api nyckel</button>
-                         </div>
-                         <div class="results">
-                           <h5 id="insertStatusHeader"></h5>
-                           <p id="insertStatusText">
-                           </p>
-                         </div>
-                       </form>
-                     </section>
+                 <form class="forms">
+                   <h4 class="crudType"> Add Book </h4>
+                   <input class="textInput" id="input1" type="text" placeholder="Enter title">
+                   <input class="textInput" id="input2" type="text" placeholder="Enter author">
+                   <div class="button-wrap">
+                     <button id="addBtn" class="button">Add</button>
+                    <!-- <button id="reqapikey" class="button">Begär ny api nyckel</button>-->
+                   </div>
+                   <div class="results">
+                     <h5 id="insertStatusHeader"></h5>
+                     <p id="insertStatusText">
+                     </p>
+                   </div>
+                 </form>
+              </section>
+
+            </span>
 
 
-                     <hr>
 
+            <!-- tag bort en bok -->
 
-                      <!-- tag bort en bok -->
+                <span id="showDeleteBook">
+                  <section>
 
-                            <section>
+                    <h4 class="crudType"> Delete Book </h4>
+                    <input class="textInput" id="textDelete" type="text" placeholder="Id: Book To Delete">
+                    <div class="button-wrap">
+                      <button id="buttonDelete" class="button">Delete Book</button>
 
-                                    <h4 class="crudType"> Delete Book </h4>
-                                    <input class="textInput" id="textDelete" type="text" placeholder="Id: Book To Delete">
-                                    <div class="button-wrap">
-                                      <button id="buttonDelete" class="button">Delete Book</button>
+                      <h4 class="crudType">Status for Delete </h4>
+                      <div id="insertDeleteText"></div>
 
-                                      <h4 class="crudType">Status for Delete </h4>
-                                      <div id="insertDeleteText"></div>
+                  </section>
 
-                                </section>
-
+                </span>
 
 
           </main>

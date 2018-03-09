@@ -269,3 +269,11 @@ footer{
   }
 
 }
+
+/* sätt "funktionaliteterna" i defaultläge till ej synliga */
+
+#showAPiKey{display: none;}
+#showGetBookList{display: none;}
+#showUpdateBook{display: none;}
+#showAddBook{display: none;}
+#showDeleteBook{display: none;}

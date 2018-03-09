@@ -4,12 +4,8 @@
 
 window.addEventListener('load', function() {
 
-	let toggleDivVisible = document.getElementById('getAPiKeyVisible');
-	toggleDivVisible.style.display='initial';
-//toggleDivVisible.style.display='initial';
-
-	let buttonApiKey = document.getElementById('btnApiKey');
-				buttonApiKey.addEventListener('click', function() {
+		let buttonApiKey = document.getElementById('btnApiKey');
+		buttonApiKey.addEventListener('click', function() {
 
 console.log('Det fungerar!');
 
@@ -367,3 +363,14 @@ function fetchUrl(requestUrl, element)
 	  		alert('There has been a problem with your fetch operation:<br><br>' + error.message);
 		});
 	}
+
+
+function toggleFunctionalities(showFunctionality){
+		let toggle = document.getElementById(showFunctionality);
+
+		if(toggle.style.display==='initial'){
+			toggle.style.display='none';
+		}
+		else
+		toggle.style.display='initial';
+  }
