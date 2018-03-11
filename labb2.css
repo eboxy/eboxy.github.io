@@ -132,63 +132,10 @@ footer{
 
 
 
-/* Media queries för en responsiv layout */
+/* Media query endast kvar pga annars funkar inte apikey-visibility */
 
+ @media (max-width: 750px) {}
 
-@media (max-width: 750px) {
-    .row { display:flex; flex-direction: column;}
-
-    div > main{order:1;}
-    div > .colleft{order:2;}
-    div > aside{order:3;}
-
-    div > .colleft, div > main, div > aside{width:100%;height: auto;}
-    div > .colleft{border-right: none;}
-    div > aside{border-left: none;}
-
-    footer{bottom: auto; position:absolute;}
-
-    header{font-size: 1.5em;}
-
-    body{overflow:visible;}
-
-    header, #pictureframe, div > .colleft{position:static;}
-
-    div > main{
-    top:0px;
-    left:0px;
-    padding-right: 0px;
-    position: static;
-    }
-
-    table, td{font-size: 1em;}
-
-}
-
-
-
-
-@media (max-width: 1200px) and (min-width:751px) {
-
-  #pictureframe{height: 10em; width: 9em;}
-
-   #pictureframe > img{height: 8.7em;}
-
-   #junklist, #junklisthead, ul#junklist > li,
-   #slavecode{display:none}
-
-
-   div > main{
-   width:57%;
-   /*height:3300px;*/
-   height:4100px;
-   top:80px;
-   left:225px;
-   padding-right: 300px;
-   position: relative;
-  }
-
-}
 
 /* sätt "funktionaliteterna" i defaultläge till ej synliga */
 
