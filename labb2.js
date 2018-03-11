@@ -118,17 +118,15 @@ else if (obj.status === "error") {
 //................................................
 //................................................
 
-/*
+
 
 //uppdatera en bok i boklistan
 
 window.addEventListener('load', function() {
 
-	//let formUpdate = document.getElementById('form-2');
+
 	let buttonUpdate = document.getElementById('updateButton');
 	buttonUpdate.addEventListener('click', function() {
-
-
 
 console.log('Det fungerar!');
 
@@ -176,10 +174,10 @@ statusUpdate.innerHTML = "<strong>Status:</strong> " + objUpdate.status + "<br><
 
 });
 
-//});
+});
 
 
-*/
+
 
 //................................................
 //................................................
@@ -194,6 +192,7 @@ let addBtn = document.getElementById("addBtn");
 
 let apiKey  = localStorage.getItem('mystorage');
 
+let baseUrl = 'https://www.forverkliga.se/JavaScript/api/crud.php';
 let titleText = document.getElementById("input1");
 let authorText = document.getElementById("input2");
 let insertStatusHeader = document.getElementById("insertStatusHeader");
@@ -202,7 +201,7 @@ let insertStatusText= document.getElementById("insertStatusText");
 addBtn.addEventListener("click", function(event)
 {
 	alert("Button click");
-	resultFontEffect(insertStatusHeader);
+	//resultFontEffect(insertStatusHeader);
 	if (isTextInputEmpty(titleText, authorText))
 	{
 		alert("Skriv i båda textboxarna!")
@@ -322,6 +321,7 @@ function isTextInputEmpty(input1, input2)
 }
 
 
+/*
 function resultFontEffect(font)
 {
 	font.style.fontSize = "xx-small";
@@ -331,6 +331,8 @@ function resultFontEffect(font)
 		font.style.fontSize = "i";
 	}
 }
+*/
+
 
 
 function fetchUrl(requestUrl, element)
