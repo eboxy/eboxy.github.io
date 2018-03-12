@@ -124,6 +124,13 @@ else if (obj.status === "error") {
 
 window.addEventListener('load', function() {
 
+//ändrar bakgrundsfärg på textboxar när de är i fokus
+changeTextBoxBackgroundColor("updateBookId");
+changeTextBoxBackgroundColor("updateBookTitle");
+changeTextBoxBackgroundColor("updatebookAuthor");
+
+
+
 
 	let buttonUpdate = document.getElementById('updateButton');
 	buttonUpdate.addEventListener('click', function() {
@@ -163,8 +170,6 @@ fetch(finalUrlUpdate)
 statusUpdate.innerHTML = "<strong>Status:</strong> " + objUpdate.status + "<br><br>";
 
 
-
-
 })
 
 
@@ -186,6 +191,12 @@ statusUpdate.innerHTML = "<strong>Status:</strong> " + objUpdate.status + "<br><
 
 window.addEventListener('load', function()
 {
+
+
+	//ändrar bakgrundsfärg på textboxar när de är i fokus
+	changeTextBoxBackgroundColor("input1");
+	changeTextBoxBackgroundColor("input2");
+
 // DOM elements
 let addBtn = document.getElementById("addBtn");
 //let apiKeyRequest = document.getElementById("reqapikey");
@@ -227,6 +238,9 @@ addBtn.addEventListener("click", function(event)
 //Tag bort en bok:
 
 window.addEventListener('load', function() {
+
+	//ändrar bakgrundsfärg på textboxar när de är i fokus
+	changeTextBoxBackgroundColor("textDelete");
 
 	let buttonDelete = document.getElementById('buttonDelete');
 				buttonDelete.addEventListener('click', function() {
@@ -366,7 +380,7 @@ function fetchUrl(requestUrl, element)
 		});
 	}
 
-
+// togglar synligheten för "funktionalit"
 function toggleFunctionalities(showFunctionality){
 		let toggle = document.getElementById(showFunctionality);
 
@@ -376,3 +390,16 @@ function toggleFunctionalities(showFunctionality){
 		else
 		toggle.style.display='initial';
   }
+
+
+
+	//ändrar bakgrundfärg när textboxar är markerade och i fokus
+	function changeTextBoxBackgroundColor(textboxToChange){
+			let textboxcCangeFocus = document.getElementById(textboxToChange);
+			textboxcCangeFocus.addEventListener('focus', function(event) {
+				textboxcCangeFocus.style.backgroundColor = "yellow";
+			});
+			textboxcCangeFocus.addEventListener('blur', function(event) {
+				textboxcCangeFocus.style.backgroundColor = "";
+			});
+	}
