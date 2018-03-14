@@ -125,7 +125,17 @@ changeTextBoxBackgroundColor("updateBookId");
 changeTextBoxBackgroundColor("updateBookTitle");
 changeTextBoxBackgroundColor("updatebookAuthor");
 
+//rensa textobx(ar)
+let clrBtnUpdate = document.getElementById("clrBtnUpdateBook");
+clrBtnUpdate.addEventListener("click", function(event){
 
+	let textbox1Upd = document.getElementById("updateBookId");
+	let textbox2Upd = document.getElementById("updateBookTitle");
+	let textbox3Upd = document.getElementById("updatebookAuthor");
+	clearTextBox(textbox1Upd);
+	clearTextBox(textbox2Upd);
+	clearTextBox(textbox3Upd);
+});
 
 
 	let buttonUpdate = document.getElementById('updateButton');
@@ -163,7 +173,7 @@ fetch(finalUrlUpdate)
 	//let outputUpdate = document.getElementById('responseUpdate');
 	let statusUpdate = document.getElementById('updateStatusText');
 
-statusUpdate.innerHTML = "<strong>Status:</strong> " + objUpdate.status + "<br><br>";
+statusUpdate.innerHTML = "<strong>Status:</strong> " + objUpdate.status;
 
 
 })
@@ -193,8 +203,20 @@ window.addEventListener('load', function()
 	changeTextBoxBackgroundColor("input1");
 	changeTextBoxBackgroundColor("input2");
 
-// DOM elements
+
 let addBtn = document.getElementById("addBtn");
+
+
+//rensa textobx(ar)
+let clrBtn = document.getElementById("clrBtnAddBook");
+clrBtn.addEventListener("click", function(event){
+
+	let textbox1 = document.getElementById("input1");
+	let textbox2 = document.getElementById("input2");
+	clearTextBox(textbox1);
+	clearTextBox(textbox2);
+});
+
 
 let apiKey  = localStorage.getItem('mystorage');
 
@@ -206,23 +228,23 @@ let insertStatusText= document.getElementById("insertStatusText");
 
 addBtn.addEventListener("click", function(event)
 {
-	alert("Button click");
+	//alert("Button click");
 	//resultFontEffect(insertStatusHeader);
 	if (isTextInputEmpty(titleText, authorText))
 	{
-		alert("Skriv i båda textboxarna!")
+		//alert("Skriv i båda textboxarna!")
 		//alert("Error: Fill in both textboxes");
 		insertStatusText.innerHTML = "Please fill in both text fields!";
 	}
 	else
 	{
 
-		alert("Lägger till bok!");
+		//alert("Lägger till bok!");
 		let requestUrl2=baseUrl+"?op=insert&key=" + apiKey + "&title=" + titleText.value + "&author=" + authorText.value;
 		// Ajax Fetch here!
-		alert(requestUrl2);
+		//alert(requestUrl2);
 		fetchUrl(requestUrl2, insertStatusText);
-		alert(requestUrl2);
+		//alert(requestUrl2);
 	}
 });
 });
@@ -237,8 +259,17 @@ window.addEventListener('load', function() {
 	//ändrar bakgrundsfärg på textboxar när de är i fokus
 	changeTextBoxBackgroundColor("textDelete");
 
-	let buttonDelete = document.getElementById('buttonDelete');
-				buttonDelete.addEventListener('click', function() {
+	//rensa textobx(ar)
+	let clrBtDelete = document.getElementById("buttonClear");
+	clrBtDelete.addEventListener("click", function(event){
+
+		let textbox1Del = document.getElementById("textDelete");
+		clearTextBox(textbox1Del);
+	});
+
+
+		let buttonDelete = document.getElementById('buttonDelete');
+	  buttonDelete.addEventListener('click', function() {
 
 console.log('Det fungerar!');
 
@@ -361,19 +392,21 @@ function fetchUrl(requestUrl, element)
 			if (json.status === "success")
 			{
 				element.innerHTML = json.status;
-				alert(json.status);
+				//alert(json.status);
 			}
 			else if(json.status === "error")
 			{
 				element.innerHTML = json.status;
-				alert("Error: " + json.message);
+				//alert("Error: " + json.message);
 			}
 		}).catch(function(error)
 		{
 	  		element.innerHTML = 'There has been a problem with your fetch operation:<br><br>' + error.message;
-	  		alert('There has been a problem with your fetch operation:<br><br>' + error.message);
+	  		//alert('There has been a problem with your fetch operation:<br><br>' + error.message);
 		});
 	}
+
+
 
 // togglar synligheten för "funktionaliteten" i fråga
 function toggleFunctionalities(showFunctionality){
@@ -388,6 +421,8 @@ function toggleFunctionalities(showFunctionality){
 
 
 
+
+
 	//ändrar bakgrundfärg när textboxar är markerade och i fokus
 	function changeTextBoxBackgroundColor(textboxToChange){
 			let textboxcCangeFocus = document.getElementById(textboxToChange);
@@ -398,3 +433,11 @@ function toggleFunctionalities(showFunctionality){
 				textboxcCangeFocus.style.backgroundColor = "";
 			});
 	}
+
+
+
+
+//clear textboxes
+function clearTextBox(textbox){
+	textbox.value = "";
+}

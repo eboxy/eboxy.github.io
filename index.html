@@ -52,42 +52,38 @@
 
           <!-- hömta api-nyckel -->
 
-          <div id="showAPiKey">
 
-            <h2>Status för hämtning av API-nyckel</h2>
+      <div id="showAPiKey">
+          <h2>Aktuell API-nyckel</h2>
+
+          <div id="responseApiKey"></div>   <!-- ta bort?? -->
+
+          <input  id="btnApiKey" type="button" value="GetApiKey" />
+
+              <h2>Status för hämtning av API-nyckel</h2>
               <div id="statusApiKey"></div>
 
-
-
-            <input  id="btnApiKey" type="button" value="GetApiKey" />
-
-
-
-            <h2>Aktuell API-nyckel</h2>
-            <div id="responseApiKey"></div>
-
         </div>
+
+
 
 
 
         <!-- hömta boklista -->
 
-          <div id="showGetBookList">
+    <div id="showGetBookList">
 
-            <h2>Status för hämtning av boklista</h2>
-              <div id="status"></div>
+        <h2>Status för hämtning av boklista</h2>
+        <div id="status"></div>
 
+        <h2>Boklista</h2>
 
+        <input  id="btn" type="button" value="GetBooks" />
 
-            <input  id="btn" type="button" value="GetBooks" />
-
-
-
-            <h2>Boklista</h2>
-                <div id="response">
-                </div>
-
+        <div id="response">
         </div>
+
+      </div>
 
 
 
@@ -97,11 +93,12 @@
 
           <section id="form-2" class="form-2">
             <form class="forms" method="post">
-              <h4 class="crudType"> Update Book </h4>
-              <input class="textInput" id="updateBookId" type="text" placeholder="Enter id" ><br><br>
-              <input class="textInput" id="updateBookTitle" type="text" placeholder="Enter title"><br><br>
-              <input class="textInput" id="updatebookAuthor" type="text" placeholder="Enter author"><br><br>
+              <h2 class="crudType"> Update Book </h2>
+              <input class="textInput" id="updateBookId" type="text" placeholder="Enter id" >
+              <input class="textInput" id="updateBookTitle" type="text" placeholder="Enter title">
+              <input class="textInput" id="updatebookAuthor" type="text" placeholder="Enter author">
               <input value="Update" type="button" id="updateButton">
+              <input value="Clear" type="button" id="clrBtnUpdateBook" class="button">
             <div class="results">
 
               <p id="updateStatusText">
@@ -120,14 +117,17 @@
 
            <section id="form-1" class="form-1">
                  <form class="forms" method="post">
-                   <h4 class="crudType"> Add Book </h4>
+                   <h2 class="crudType"> Add Book </h2>
                    <input class="textInput" id="input1" type="text" placeholder="Enter title">
                    <input class="textInput" id="input2" type="text" placeholder="Enter author">
                    <div class="button-wrap">
                   <input value="Add" type="button" id="addBtn" class="button">
+                  <input value="Clear" type="button" id="clrBtnAddBook" class="button">
                      <!-- <button id="reqapikey" class="button">Begär ny api nyckel</button>-->
                    </div>
                    <div class="results">
+
+                    <strong>Status:</strong>;
 
                      <p id="insertStatusText">
                      </p>
@@ -144,10 +144,11 @@
                 <div id="showDeleteBook">
                   <section>
 
-                    <h4 class="crudType"> Delete Book </h4>
+                    <h2 class="crudType"> Delete Book </h2>
                     <input class="textInput" id="textDelete" type="text" placeholder="Id: Book To Delete">
                     <div class="button-wrap"></div>
                       <button id="buttonDelete" class="button">Delete Book</button>
+                      <button id="buttonClear" class="button">Clear</button>
 
                       <h4 class="crudType">Status for Delete </h4>
                       <div id="insertDeleteText"></div>
@@ -160,7 +161,7 @@
           </main>
 
 
-              <!--  överste boknörd himself:  -->
+
 
               <aside>
 
