@@ -26,17 +26,13 @@ fetch(finalUrlApiKey)
 	let outputApiKey = document.getElementById('responseApiKey');
 	let statusApiKey = document.getElementById('statusApiKey');
 
-statusApiKey.innerHTML = "<strong>Status:</strong> " + objApiKey.status + "<br><br>"
-+ "<strong>Meddelande:</strong> " + objApiKey.message;
-
+statusApiKey.innerHTML = "<strong>Status:</strong> " + objApiKey.status;
 
 //lagra api-nyckel i local storage
-//let storageApiKey = objApiKey.key;
+let storageApiKey = objApiKey.key.toString();
 
-
-const storageApiKey = 'fzJ8Z';
+//const storageApiKey = 'GJ9Jp';
 localStorage.setItem('mystorage', storageApiKey);
-//alert(string);
 
 outputApiKey.innerHTML = storageApiKey;
 //skall vi ha denna pga säkerhetsaspekt??
@@ -199,7 +195,6 @@ window.addEventListener('load', function()
 
 // DOM elements
 let addBtn = document.getElementById("addBtn");
-//let apiKeyRequest = document.getElementById("reqapikey");
 
 let apiKey  = localStorage.getItem('mystorage');
 
@@ -380,7 +375,7 @@ function fetchUrl(requestUrl, element)
 		});
 	}
 
-// togglar synligheten för "funktionalit"
+// togglar synligheten för "funktionaliteten" i fråga
 function toggleFunctionalities(showFunctionality){
 		let toggle = document.getElementById(showFunctionality);
 
@@ -397,7 +392,7 @@ function toggleFunctionalities(showFunctionality){
 	function changeTextBoxBackgroundColor(textboxToChange){
 			let textboxcCangeFocus = document.getElementById(textboxToChange);
 			textboxcCangeFocus.addEventListener('focus', function(event) {
-				textboxcCangeFocus.style.backgroundColor = "yellow";
+				textboxcCangeFocus.style.backgroundColor = "#ffffb3";
 			});
 			textboxcCangeFocus.addEventListener('blur', function(event) {
 				textboxcCangeFocus.style.backgroundColor = "";
