@@ -1,11 +1,10 @@
+window.addEventListener('load', function(event){
 
+	//hämta api-nyckel
+let failedFetchRequests = 1;
 
-//hämta api-nyckel
-
-window.addEventListener('load', function() {
-
-		let buttonApiKey = document.getElementById('btnApiKey');
-		buttonApiKey.addEventListener('click', function() {
+let buttonApiKey = document.getElementById('btnApiKey');
+buttonApiKey.addEventListener('click', function() {
 
 console.log('Det fungerar!');
 
@@ -29,12 +28,10 @@ fetch(finalUrlApiKey)
 statusApiKey.innerHTML = "<strong>Status:</strong> " + objApiKey.status + "<br><br>"
 + "<strong>Meddelande:</strong> " + objApiKey.message;
 
-
 //lagra api-nyckel i local storage
-//let storageApiKey = objApiKey.key;
+let storageApiKey = objApiKey.key.toString();
 
-
-const storageApiKey = 'fzJ8Z';
+//storageApiKey = 'fzJ8Z';
 localStorage.setItem('mystorage', storageApiKey);
 //alert(string);
 
@@ -42,32 +39,17 @@ outputApiKey.innerHTML = storageApiKey;
 //skall vi ha denna pga säkerhetsaspekt??
 
 })
-
-
 .catch( messageApiKey => {
 	console.log('Något gick fel: ' + messageApiKey);
-
-
 });
 
 });
-
-});
-
-
-
-
 //................................................
 //................................................
-
-
 
 //hämta boklistan
-
-window.addEventListener('load', function() {
-
-	let button = document.getElementById('btn');
-				button.addEventListener('click', function() {
+	let selectButton = document.getElementById('btn');
+	selectButton.addEventListener('click', function() {
 
 console.log('Det fungerar!');
 
@@ -90,47 +72,32 @@ fetch(finalUrl)
 	let output = document.getElementById('response');
 	let status = document.getElementById('status');
 
-status.innerHTML = "<strong>Status:</strong> " + obj.status + "<br><br>"
-+ "<strong>Meddelande:</strong> " + obj.message;
-
 if(obj.status === "success")
 {
-		loopBookList(obj, output);
-		//output.innerHTML = restext + restext2;
+	loopBookList(obj, output);
+	//output.innerHTML = restext + restext2;
 }
-else if (obj.status === "error") {
-	  output.innerHTML = "";
+else 
+{
+  	output.innerHTML = "<strong>Status: </strong> " + obj.status + "<br><br>"
+	+ "<strong>Meddelande:</strong> " + obj.message;
 }
 
 })
-
 .catch( message => {
 	console.log('Något gick fel: ' + message);
 });
-
 });
-
-});
-
-
-
-
 //................................................
 //................................................
-
-
 
 //uppdatera en bok i boklistan
 
-window.addEventListener('load', function() {
 
 //ändrar bakgrundsfärg på textboxar när de är i fokus
 changeTextBoxBackgroundColor("updateBookId");
 changeTextBoxBackgroundColor("updateBookTitle");
 changeTextBoxBackgroundColor("updatebookAuthor");
-
-
-
 
 	let buttonUpdate = document.getElementById('updateButton');
 	buttonUpdate.addEventListener('click', function() {
@@ -144,19 +111,13 @@ let idUpdate = document.getElementById("updateBookId").value;
 let titleUpdate = document.getElementById("updateBookTitle").value;
 let authorUpdate = document.getElementById("updatebookAuthor").value;
 console.log("check",authorUpdate );
-
-
-//let key ='cg45j';  //ny nyckel
-//let key ='fzJ8Z';  // FUNGERAR!!!
-
-
-//let' key = storageApiKey;
-
+let outputUpdate = document.getElementById('responseUpdate');
+let statusUpdate = document.getElementById('updateStatusText');
 
 let finalUrlUpdate = `${urlUpdate}?op=${opUpdate}&key=${keyUpdate}&id=${idUpdate}&title=${titleUpdate}&author=${authorUpdate}`;
 
 console.log('Hämtar data från: ' + finalUrlUpdate);
-fetch(finalUrlUpdate)
+/*fetch(finalUrlUpdate)
 .then( responseUpdate => {
 	console.log('Svar från servern:', responseUpdate);
 	return  responseUpdate.json();
@@ -164,24 +125,17 @@ fetch(finalUrlUpdate)
 .then(function(objUpdate){
 
   console.log('svar som objekt', objUpdate);
-	//let outputUpdate = document.getElementById('responseUpdate');
-	let statusUpdate = document.getElementById('updateStatusText');
+	
+	
 
 statusUpdate.innerHTML = "<strong>Status:</strong> " + objUpdate.status + "<br><br>";
-
-
 })
-
-
 .catch(messageUpdate => {
 	console.log('Något gick fel: ' + messageUpdate);
 });
-
+*/
+fetchUrl(finalUrlUpdate, statusUpdate);
 });
-
-});
-
-
 
 
 //................................................
@@ -189,28 +143,22 @@ statusUpdate.innerHTML = "<strong>Status:</strong> " + objUpdate.status + "<br><
 
 //lägg till en bok i boklistan
 
-window.addEventListener('load', function()
-{
-
-
-	//ändrar bakgrundsfärg på textboxar när de är i fokus
-	changeTextBoxBackgroundColor("input1");
-	changeTextBoxBackgroundColor("input2");
+//ändrar bakgrundsfärg på textboxar när de är i fokus
+changeTextBoxBackgroundColor("input1");
+changeTextBoxBackgroundColor("input2");
 
 // DOM elements
 let addBtn = document.getElementById("addBtn");
 //let apiKeyRequest = document.getElementById("reqapikey");
 
-let apiKey  = localStorage.getItem('mystorage');
+addBtn.addEventListener("click", function() {
 
-let baseUrl = 'https://www.forverkliga.se/JavaScript/api/crud.php';
-let titleText = document.getElementById("input1");
-let authorText = document.getElementById("input2");
-let insertStatusHeader = document.getElementById("insertStatusHeader");
-let insertStatusText= document.getElementById("insertStatusText");
-
-addBtn.addEventListener("click", function(event)
-{
+	let apiKey  = localStorage.getItem('mystorage');
+	let baseUrl = 'https://www.forverkliga.se/JavaScript/api/crud.php';
+	let titleText = document.getElementById("input1");
+	let authorText = document.getElementById("input2");
+	let insertStatusHeader = document.getElementById("insertStatusHeader");
+	let insertStatusText= document.getElementById("insertStatusText");
 	alert("Button click");
 	//resultFontEffect(insertStatusHeader);
 	if (isTextInputEmpty(titleText, authorText))
@@ -230,20 +178,17 @@ addBtn.addEventListener("click", function(event)
 		alert(requestUrl2);
 	}
 });
-});
 
 //................................................
 //................................................
 
 //Tag bort en bok:
 
-window.addEventListener('load', function() {
-
 	//ändrar bakgrundsfärg på textboxar när de är i fokus
 	changeTextBoxBackgroundColor("textDelete");
 
 	let buttonDelete = document.getElementById('buttonDelete');
-				buttonDelete.addEventListener('click', function() {
+	buttonDelete.addEventListener('click', function() {
 
 console.log('Det fungerar!');
 
@@ -253,49 +198,19 @@ let keyDelete = localStorage.getItem('mystorage');
 //let key ='cg45j';  //ny nyckel
 //let key ='fzJ8Z';  // FUNGERAR!!!
 let idDelete = document.getElementById("textDelete").value
+let statusDelete = document.getElementById('insertDeleteText');
 
 let finalUrlDelete = `${urlDelete}?op=${opDelete}&key=${keyDelete}&id=${idDelete}`;
 console.log('Hämtar data från: ' + finalUrlDelete);
-fetch(finalUrlDelete)
-.then( responseDelete => {
-	console.log('Svar från servern:', responseDelete);
-	return responseDelete.json();
-} )
-.then(function(objDelete){
 
-  console.log('svar som objekt', objDelete);
-	//let output = document.getElementById('response');
-	let statusDelete = document.getElementById('insertDeleteText');
-
-statusDelete.innerHTML = "<strong>Status:</strong> " + objDelete.status;
-
-
-
-})
-
-.catch( messageDelete => {
-	console.log('Något gick fel: ' + messageDelete);
+fetchUrl(finalUrlDelete, statusDelete);
 });
-
-});
-
-});
-
-
-
-
-
-
-
-
-
-
 //................................................
 //................................................
+
 
 
 //FUNKTIONER:
-
 
 function loopBookList(obj, output)
 {
@@ -320,8 +235,6 @@ function loopBookList(obj, output)
 }
 
 
-
-
 function isTextInputEmpty(input1, input2)
 {
 	if (input1.value.length === 0 || input2.value.length === 0)
@@ -333,21 +246,6 @@ function isTextInputEmpty(input1, input2)
 		return false;
 	}
 }
-
-
-/*
-function resultFontEffect(font)
-{
-	font.style.fontSize = "xx-small";
-	font.innerHTML = "Status";
-	for (var i = 0; i < 100; i++)
-	{
-		font.style.fontSize = "i";
-	}
-}
-*/
-
-
 
 function fetchUrl(requestUrl, element)
 {
@@ -363,20 +261,39 @@ function fetchUrl(requestUrl, element)
 		.then(function(json)
 		{
 		// data/json är ett objekt som innehåller serverns svar
+
 			if (json.status === "success")
 			{
 				element.innerHTML = json.status;
-				alert(json.status);
+				console.log("Fetch status: " + json.status);
+				failedFetchRequests = 0;
 			}
-			else if(json.status === "error")
+			else
 			{
-				element.innerHTML = json.status;
-				alert("Error: " + json.message);
+				// Testa 10 gånger!
+				ajaxRepeat(json, requestUrl, element);
 			}
+
 		}).catch(function(error)
 		{
 	  		element.innerHTML = 'There has been a problem with your fetch operation:<br><br>' + error.message;
 	  		alert('There has been a problem with your fetch operation:<br><br>' + error.message);
+		});
+}	
+
+	function fetchUrlSelect(selectUrl, element)
+	{
+		fetch(selectUrl)
+		.then(function(response)
+		{
+
+		})
+		.then(function(json)
+		{
+
+		}).catch(function(error)
+		{
+
 		});
 	}
 
@@ -388,7 +305,9 @@ function toggleFunctionalities(showFunctionality){
 			toggle.style.display='none';
 		}
 		else
+		{	
 		toggle.style.display='initial';
+	}
   }
 
 
@@ -403,3 +322,28 @@ function toggleFunctionalities(showFunctionality){
 				textboxcCangeFocus.style.backgroundColor = "";
 			});
 	}
+
+	function ajaxRepeat(json, requestUrl, element)
+	{
+
+		if (failedFetchRequests < 10)
+		{
+			failedFetchRequests ++;
+			element.innerHTML = "Fetch status: " + json.status + " Number of tries: " + failedFetchRequests + " Description: " + json.message;
+			alert("Fetch status: " + json.status + " Number of tries: " + failedFetchRequests + " Description: " + json.message);
+			fetchUrl(requestUrl, element);
+		}
+		else
+		{
+			element.innerHTML = "Maximum amount of tries exceeded, Operation Failed!";
+			console.log("Maximum amount of tries exceeded, Operation Failed!");
+			failedFetchRequests = 0;
+			return;
+		}	
+			
+	}
+
+
+
+
+});
