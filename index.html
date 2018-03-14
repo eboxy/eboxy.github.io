@@ -19,11 +19,12 @@
     <div class="row">
             <div class="colleft">
                 <nav class="oval">
-                    <a href="#" onclick="toggleFunctionalities('showAPiKey')">APIKey</a>
-                    <a href="#" onclick="toggleFunctionalities('showGetBookList')">List</a>
-                    <a href="#" onclick="toggleFunctionalities('showUpdateBook')">Update</a>
-                    <a href="#" onclick="toggleFunctionalities('showAddBook')">Add</a>
-                    <a href="#" onclick="toggleFunctionalities('showDeleteBook')">Delete</a>
+                    <a href="#" id="apiKeyVisibilityButton">APIKey</a>
+                    <a href="#" id="listVisibilityButton">List</a>
+                    <a href="#" id="updateVisibilityButton">Update</a>
+                    <a href="#" id="addVisibilityButton">Add</a>
+                    <a href="#" id="deleteVisibilityButton">Delete</a>
+
 
                 </nav>
             </div>
@@ -43,7 +44,7 @@
             </p>
 
           <!--  HUVUDFUNKTIONALITET HÄR!!!  -->
-          
+
           <!-- hömta api-nyckel -->
 
 
@@ -93,6 +94,8 @@
               <input value="Update" type="button" id="updateButton">
               <input value="Clear" type="button" id="clrBtnUpdateBook" class="button">
             <div class="results">
+
+              <strong>Status:</strong>
 
               <p id="updateStatusText">
               </p>

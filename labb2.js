@@ -3,6 +3,14 @@ window.addEventListener('load', function(event){
 	//hämta api-nyckel
 let failedFetchRequests = 1;
 
+
+//"navvigations-knapp" visar togglar "funktionalitet"
+let apiKeyButton = document.getElementById("apiKeyVisibilityButton");
+apiKeyButton.addEventListener('click', function(){
+toggleFunctionalities('showAPiKey');
+});
+
+
 let buttonApiKey = document.getElementById('btnApiKey');
 buttonApiKey.addEventListener('click', function() {
 
@@ -45,6 +53,15 @@ outputApiKey.innerHTML = storageApiKey;
 //................................................
 
 //hämta boklistan
+
+
+//"navvigations-knapp" visar togglar "funktionalitet"
+let listButton = document.getElementById("listVisibilityButton");
+listButton.addEventListener('click', function(){
+toggleFunctionalities('showGetBookList');
+});
+
+
 	let selectButton = document.getElementById('btn');
 	selectButton.addEventListener('click', function() {
 
@@ -72,12 +89,17 @@ fetch(finalUrl)
 if(obj.status === "success")
 {
 	loopBookList(obj, output);
-	//output.innerHTML = restext + restext2;
+
+	status.innerHTML = "<strong>Status: </strong> " + obj.status
+	+ "   " + "<strong>Meddelande:</strong> " + obj.message;
+
 }
-else 
+else
 {
-  	output.innerHTML = "<strong>Status: </strong> " + obj.status + "<br><br>"
-	+ "<strong>Meddelande:</strong> " + obj.message;
+	status.innerHTML = "<strong>Status: </strong> " + obj.status
++ "   " + "<strong>Meddelande:</strong> " + obj.message;
+
+	output.innerHTML = "";
 }
 
 })
@@ -89,6 +111,13 @@ else
 //................................................
 
 //uppdatera en bok i boklistan
+
+
+//"navvigations-knapp" visar togglar "funktionalitet"
+let updateButton = document.getElementById("updateVisibilityButton");
+updateButton.addEventListener('click', function(){
+toggleFunctionalities('showUpdateBook');
+});
 
 
 //ändrar bakgrundsfärg på textboxar när de är i fokus
@@ -120,8 +149,8 @@ let keyUpdate = localStorage.getItem('mystorage');
 let idUpdate = document.getElementById("updateBookId").value;
 let titleUpdate = document.getElementById("updateBookTitle").value;
 let authorUpdate = document.getElementById("updatebookAuthor").value;
-console.log("check",authorUpdate );
-let outputUpdate = document.getElementById('responseUpdate');
+
+//let outputUpdate = document.getElementById('responseUpdate');
 let statusUpdate = document.getElementById('updateStatusText');
 
 let finalUrlUpdate = `${urlUpdate}?op=${opUpdate}&key=${keyUpdate}&id=${idUpdate}&title=${titleUpdate}&author=${authorUpdate}`;
@@ -136,6 +165,14 @@ fetchUrl(finalUrlUpdate, statusUpdate);
 //................................................
 
 //lägg till en bok i boklistan
+
+
+//"navvigations-knapp" visar togglar "funktionalitet"
+let addButton = document.getElementById("addVisibilityButton");
+addButton.addEventListener('click', function(){
+toggleFunctionalities('showAddBook');
+});
+
 
 //ändrar bakgrundsfärg på textboxar när de är i fokus
 changeTextBoxBackgroundColor("input1");
@@ -189,6 +226,15 @@ addBtn.addEventListener("click", function() {
 //................................................
 
 //Tag bort en bok:
+
+
+
+//"navvigations-knapp" visar togglar "funktionalitet"
+let deleteButton = document.getElementById("deleteVisibilityButton");
+deleteButton.addEventListener('click', function(){
+toggleFunctionalities('showDeleteBook');
+});
+
 
 	//ändrar bakgrundsfärg på textboxar när de är i fokus
 	changeTextBoxBackgroundColor("textDelete");
@@ -295,8 +341,8 @@ function fetchUrl(requestUrl, element)
 	  		element.innerHTML = 'There has been a problem with your fetch operation:<br><br>' + error.message;
 	  		//alert('There has been a problem with your fetch operation:<br><br>' + error.message);
 		});
-}	
-	
+}
+
 	// FIXAR JAG!
 	function fetchUrlSelect(selectUrl, element)
 	{
@@ -322,10 +368,13 @@ function toggleFunctionalities(showFunctionality){
 			toggle.style.display='none';
 		}
 		else
-		{	
+		{
 		toggle.style.display='initial';
 	}
   }
+
+
+
 
 	//ändrar bakgrundfärg när textboxar är markerade och i fokus
 	function changeTextBoxBackgroundColor(textboxToChange){
@@ -338,6 +387,9 @@ function toggleFunctionalities(showFunctionality){
 			});
 	}
 
+
+
+
 	function ajaxRepeat(json, requestUrl, element)
 	{
 
@@ -345,7 +397,7 @@ function toggleFunctionalities(showFunctionality){
 		{
 			failedFetchRequests ++;
 			element.innerHTML = "Fetch status: " + json.status + " Number of tries: " + failedFetchRequests + " Description: " + json.message;
-			alert("Fetch status: " + json.status + " Number of tries: " + failedFetchRequests + " Description: " + json.message);
+			//alert("Fetch status: " + json.status + " Number of tries: " + failedFetchRequests + " Description: " + json.message);
 			fetchUrl(requestUrl, element);
 		}
 		else
@@ -354,13 +406,19 @@ function toggleFunctionalities(showFunctionality){
 			console.log("Maximum amount of tries exceeded, Operation Failed!");
 			failedFetchRequests = 0;
 			return;
-		}	
-			
+		}
+
 	}
 
-});
 
-//clear textboxes
-function clearTextBox(textbox){
-	textbox.value = "";
-}
+
+	//clear textboxes
+	function clearTextBox(textbox){
+		textbox.value = "";
+	}
+
+
+
+
+
+});  //pages load-function ends here!!

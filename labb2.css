@@ -114,7 +114,39 @@ footer{
 }
 
 
+/*  positionering av element i "funktionaliteterna"  */
 
+
+/* Upate:  */
+#updateBookTitle{
+position: relative;
+top:36px;
+right: 165px;
+}
+
+#updatebookAuthor{
+position: relative;
+top: 70px;
+right: 330px;
+}
+
+.results{
+  position: relative;
+  top: 130px;
+  right: 0px;
+}
+
+#updateButton{
+  position: relative;
+  top: 110px;
+  right: 500px;
+}
+
+#clrBtnUpdateBook{
+  position: relative;
+  top: 110px;
+  right: 500px;
+}
 
 
 
