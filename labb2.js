@@ -25,15 +25,13 @@ fetch(finalUrlApiKey)
 	let outputApiKey = document.getElementById('responseApiKey');
 	let statusApiKey = document.getElementById('statusApiKey');
 
-statusApiKey.innerHTML = "<strong>Status:</strong> " + objApiKey.status + "<br><br>"
-+ "<strong>Meddelande:</strong> " + objApiKey.message;
+
+statusApiKey.innerHTML = "<strong>Status:</strong> " + objApiKey.status;
 
 //lagra api-nyckel i local storage
 let storageApiKey = objApiKey.key.toString();
 
-//storageApiKey = 'fzJ8Z';
 localStorage.setItem('mystorage', storageApiKey);
-//alert(string);
 
 outputApiKey.innerHTML = storageApiKey;
 //skall vi ha denna pga säkerhetsaspekt??
@@ -42,7 +40,6 @@ outputApiKey.innerHTML = storageApiKey;
 .catch( messageApiKey => {
 	console.log('Något gick fel: ' + messageApiKey);
 });
-
 });
 //................................................
 //................................................
@@ -99,6 +96,19 @@ changeTextBoxBackgroundColor("updateBookId");
 changeTextBoxBackgroundColor("updateBookTitle");
 changeTextBoxBackgroundColor("updatebookAuthor");
 
+//rensa textobx(ar)
+let clrBtnUpdate = document.getElementById("clrBtnUpdateBook");
+clrBtnUpdate.addEventListener("click", function(event){
+
+	let textbox1Upd = document.getElementById("updateBookId");
+	let textbox2Upd = document.getElementById("updateBookTitle");
+	let textbox3Upd = document.getElementById("updatebookAuthor");
+	clearTextBox(textbox1Upd);
+	clearTextBox(textbox2Upd);
+	clearTextBox(textbox3Upd);
+});
+
+
 	let buttonUpdate = document.getElementById('updateButton');
 	buttonUpdate.addEventListener('click', function() {
 
@@ -117,23 +127,7 @@ let statusUpdate = document.getElementById('updateStatusText');
 let finalUrlUpdate = `${urlUpdate}?op=${opUpdate}&key=${keyUpdate}&id=${idUpdate}&title=${titleUpdate}&author=${authorUpdate}`;
 
 console.log('Hämtar data från: ' + finalUrlUpdate);
-/*fetch(finalUrlUpdate)
-.then( responseUpdate => {
-	console.log('Svar från servern:', responseUpdate);
-	return  responseUpdate.json();
-} )
-.then(function(objUpdate){
 
-  console.log('svar som objekt', objUpdate);
-	
-	
-
-statusUpdate.innerHTML = "<strong>Status:</strong> " + objUpdate.status + "<br><br>";
-})
-.catch(messageUpdate => {
-	console.log('Något gick fel: ' + messageUpdate);
-});
-*/
 fetchUrl(finalUrlUpdate, statusUpdate);
 });
 
@@ -147,11 +141,23 @@ fetchUrl(finalUrlUpdate, statusUpdate);
 changeTextBoxBackgroundColor("input1");
 changeTextBoxBackgroundColor("input2");
 
-// DOM elements
+
 let addBtn = document.getElementById("addBtn");
-//let apiKeyRequest = document.getElementById("reqapikey");
+
+
+//rensa textobx(ar)
+let clrBtn = document.getElementById("clrBtnAddBook");
+clrBtn.addEventListener("click", function(){
+
+	let textbox1 = document.getElementById("input1");
+	let textbox2 = document.getElementById("input2");
+	clearTextBox(textbox1);
+	clearTextBox(textbox2);
+});
+
 
 addBtn.addEventListener("click", function() {
+
 
 	let apiKey  = localStorage.getItem('mystorage');
 	let baseUrl = 'https://www.forverkliga.se/JavaScript/api/crud.php';
@@ -159,23 +165,23 @@ addBtn.addEventListener("click", function() {
 	let authorText = document.getElementById("input2");
 	let insertStatusHeader = document.getElementById("insertStatusHeader");
 	let insertStatusText= document.getElementById("insertStatusText");
-	alert("Button click");
+	//alert("Button click");
 	//resultFontEffect(insertStatusHeader);
 	if (isTextInputEmpty(titleText, authorText))
 	{
-		alert("Skriv i båda textboxarna!")
+		//alert("Skriv i båda textboxarna!")
 		//alert("Error: Fill in both textboxes");
 		insertStatusText.innerHTML = "Please fill in both text fields!";
 	}
 	else
 	{
 
-		alert("Lägger till bok!");
+		//alert("Lägger till bok!");
 		let requestUrl2=baseUrl+"?op=insert&key=" + apiKey + "&title=" + titleText.value + "&author=" + authorText.value;
 		// Ajax Fetch here!
-		alert(requestUrl2);
+		//alert(requestUrl2);
 		fetchUrl(requestUrl2, insertStatusText);
-		alert(requestUrl2);
+		//alert(requestUrl2);
 	}
 });
 
@@ -186,9 +192,17 @@ addBtn.addEventListener("click", function() {
 
 	//ändrar bakgrundsfärg på textboxar när de är i fokus
 	changeTextBoxBackgroundColor("textDelete");
+	//rensa textobx(ar)
+	let clrBtDelete = document.getElementById("buttonClear");
+	clrBtDelete.addEventListener("click", function(event){
 
-	let buttonDelete = document.getElementById('buttonDelete');
-	buttonDelete.addEventListener('click', function() {
+		let textbox1Del = document.getElementById("textDelete");
+		clearTextBox(textbox1Del);
+	});
+
+
+		let buttonDelete = document.getElementById('buttonDelete');
+	  buttonDelete.addEventListener('click', function() {
 
 console.log('Det fungerar!');
 
@@ -267,6 +281,8 @@ function fetchUrl(requestUrl, element)
 				element.innerHTML = json.status;
 				console.log("Fetch status: " + json.status);
 				failedFetchRequests = 0;
+				//alert(json.status);
+
 			}
 			else
 			{
@@ -277,10 +293,11 @@ function fetchUrl(requestUrl, element)
 		}).catch(function(error)
 		{
 	  		element.innerHTML = 'There has been a problem with your fetch operation:<br><br>' + error.message;
-	  		alert('There has been a problem with your fetch operation:<br><br>' + error.message);
+	  		//alert('There has been a problem with your fetch operation:<br><br>' + error.message);
 		});
 }	
-
+	
+	// FIXAR JAG!
 	function fetchUrlSelect(selectUrl, element)
 	{
 		fetch(selectUrl)
@@ -297,7 +314,7 @@ function fetchUrl(requestUrl, element)
 		});
 	}
 
-// togglar synligheten för "funktionalit"
+// togglar synligheten för "funktionaliteten" i fråga
 function toggleFunctionalities(showFunctionality){
 		let toggle = document.getElementById(showFunctionality);
 
@@ -310,13 +327,11 @@ function toggleFunctionalities(showFunctionality){
 	}
   }
 
-
-
 	//ändrar bakgrundfärg när textboxar är markerade och i fokus
 	function changeTextBoxBackgroundColor(textboxToChange){
 			let textboxcCangeFocus = document.getElementById(textboxToChange);
 			textboxcCangeFocus.addEventListener('focus', function(event) {
-				textboxcCangeFocus.style.backgroundColor = "yellow";
+				textboxcCangeFocus.style.backgroundColor = "#ffffb3";
 			});
 			textboxcCangeFocus.addEventListener('blur', function(event) {
 				textboxcCangeFocus.style.backgroundColor = "";
@@ -343,7 +358,9 @@ function toggleFunctionalities(showFunctionality){
 			
 	}
 
-
-
-
 });
+
+//clear textboxes
+function clearTextBox(textbox){
+	textbox.value = "";
+}

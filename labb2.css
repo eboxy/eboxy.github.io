@@ -104,7 +104,7 @@ footer{
   border-bottom: 8px solid #ffffff;
   color: #ffffff;
   font-weight: bold;
-  Font-size: 1em;
+  font-size: 1em;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -112,6 +112,8 @@ footer{
   border-radius:30%;
 
 }
+
+
 
 
 
