@@ -144,39 +144,43 @@ footer{
 /* list end */
 
 
-
 /* Upate start:  */
 
+#updateBookId {
+  display: block;
+  position: relative;
+  top:10px;
+}
+
 #updateBookTitle{
+  display: block;
 position: relative;
-top:36px;
-right: 165px;
+top:24px;
 }
 
 #updatebookAuthor{
+  position: block;
 position: relative;
-top: 70px;
-right: 330px;
+top: 36px;
 }
 
 .results{
   position: relative;
-  top: 110px;
+  top: 75px;
   right: 0px;
 }
 
 #updateButton{
   position: relative;
-  top: 110px;
-  right: 500px;
+  top: 75px;
+  right: 165px;
 }
 
 #clrBtnUpdateBook{
   position: relative;
-  top: 110px;
-  right: 500px;
+  top: 75px;
+  right: 165px;
 }
-
 /* Upate end:  */
 
 

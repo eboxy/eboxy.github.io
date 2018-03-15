@@ -4,6 +4,19 @@ window.addEventListener('load', function(event){
 let failedFetchRequests = 1;
 
 
+
+//rensa textobx(ar)
+let clrBtnApiKey = document.getElementById("clearBtnApiKey");
+clrBtnApiKey.addEventListener("click", function(event){
+
+	let clearStatusApiKey = document.getElementById("statusApiKey");
+	
+	clearStatusText(clearStatusApiKey);
+	
+});
+
+
+
 //"navvigations-knapp" visar togglar "funktionalitet"
 let apiKeyButton = document.getElementById("apiKeyVisibilityButton");
 apiKeyButton.addEventListener('click', function(){
@@ -34,7 +47,7 @@ fetch(finalUrlApiKey)
 	let statusApiKey = document.getElementById('statusApiKey');
 
 
-statusApiKey.innerHTML = "<strong>Status:</strong> " + objApiKey.status;
+statusApiKey.innerHTML = objApiKey.status;
 
 //lagra api-nyckel i local storage
 let storageApiKey = objApiKey.key.toString();
@@ -55,6 +68,18 @@ outputApiKey.innerHTML = storageApiKey;
 //hämta boklistan
 
 
+let clrListBtn = document.getElementById("clearBtnList");
+clrListBtn.addEventListener("click", function(event){
+
+	let fetchStatus = document.getElementById("status");
+	
+	clearStatusText(fetchStatus);
+});
+
+
+
+
+
 //"navvigations-knapp" visar togglar "funktionalitet"
 let listButton = document.getElementById("listVisibilityButton");
 listButton.addEventListener('click', function(){
@@ -70,43 +95,14 @@ console.log('Det fungerar!');
 let url = 'https://www.forverkliga.se/JavaScript/api/crud.php';
 let op = 'select';
 let key = localStorage.getItem('mystorage');
+let status = document.getElementById('status');
 //let key ='cg45j';  //ny nyckel
 //let key ='fzJ8Z';  // FUNGERAR!!!
 
 let finalUrl = `${url}?op=${op}&key=${key}`;
 console.log('Hämtar data från: ' + finalUrl);
-fetch(finalUrl)
-.then( response => {
-	console.log('Svar från servern:', response);
-	return response.json();
-} )
-.then(function(obj){
 
-  console.log('svar som objekt',obj);
-	let output = document.getElementById('response');
-	let status = document.getElementById('status');
-	let mess = document.getElementById('mess');
-
-if(obj.status === "success")
-{
-	loopBookList(obj, output);
-
-	status.innerHTML = "<strong>Status: </strong> " + obj.status;
-	mess.innerHTML = "<strong>Meddelande:</strong> " + obj.message;
-
-}
-else
-{
-	status.innerHTML = "<strong>Status: </strong> " + obj.status;
-	mess.innerHTML = "<strong>Meddelande:</strong> " + obj.message;
-
-	output.innerHTML = "";
-}
-
-})
-.catch( message => {
-	console.log('Något gick fel: ' + message);
-});
+fetchUrlSelection(finalUrl, status);
 });
 //................................................
 //................................................
@@ -133,11 +129,11 @@ clrBtnUpdate.addEventListener("click", function(event){
 	let textbox1Upd = document.getElementById("updateBookId");
 	let textbox2Upd = document.getElementById("updateBookTitle");
 	let textbox3Upd = document.getElementById("updatebookAuthor");
-	clearTextBox(textbox1Upd);
-	clearTextBox(textbox2Upd);
-	clearTextBox(textbox3Upd);
+	let statusUpdate = document.getElementById('updateStatusText');
+	clearTextBox(textbox1Upd, statusUpdate);
+	clearTextBox(textbox2Upd, statusUpdate);
+	clearTextBox(textbox3Upd, statusUpdate);
 });
-
 
 	let buttonUpdate = document.getElementById('updateButton');
 	buttonUpdate.addEventListener('click', function() {
@@ -153,12 +149,18 @@ let authorUpdate = document.getElementById("updatebookAuthor").value;
 
 //let outputUpdate = document.getElementById('responseUpdate');
 let statusUpdate = document.getElementById('updateStatusText');
+if(isTextInputEmpty(idUpdate) || isTextInputEmpty(titleUpdate) || isTextInputEmpty(authorUpdate))
+{
+	statusUpdate.innerHTML = "Please fill in <strong>ALL</strong> text fields!";
+}
+else
+{
+	let finalUrlUpdate = `${urlUpdate}?op=${opUpdate}&key=${keyUpdate}&id=${idUpdate}&title=${titleUpdate}&author=${authorUpdate}`;
 
-let finalUrlUpdate = `${urlUpdate}?op=${opUpdate}&key=${keyUpdate}&id=${idUpdate}&title=${titleUpdate}&author=${authorUpdate}`;
+	console.log('Hämtar data från: ' + finalUrlUpdate);
 
-console.log('Hämtar data från: ' + finalUrlUpdate);
-
-fetchUrl(finalUrlUpdate, statusUpdate);
+	fetchUrl(finalUrlUpdate, statusUpdate);
+}
 });
 
 
@@ -166,7 +168,6 @@ fetchUrl(finalUrlUpdate, statusUpdate);
 //................................................
 
 //lägg till en bok i boklistan
-
 
 //"navvigations-knapp" visar togglar "funktionalitet"
 let addButton = document.getElementById("addVisibilityButton");
@@ -189,8 +190,9 @@ clrBtn.addEventListener("click", function(){
 
 	let textbox1 = document.getElementById("input1");
 	let textbox2 = document.getElementById("input2");
-	clearTextBox(textbox1);
-	clearTextBox(textbox2);
+	let insertStatusText= document.getElementById("insertStatusText");
+	clearTextBox(textbox1, insertStatusText);
+	clearTextBox(textbox2, insertStatusText);
 });
 
 
@@ -199,23 +201,23 @@ addBtn.addEventListener("click", function() {
 
 	let apiKey  = localStorage.getItem('mystorage');
 	let baseUrl = 'https://www.forverkliga.se/JavaScript/api/crud.php';
-	let titleText = document.getElementById("input1");
-	let authorText = document.getElementById("input2");
+	let titleText = document.getElementById("input1").value;
+	let authorText = document.getElementById("input2").value;
 	let insertStatusHeader = document.getElementById("insertStatusHeader");
 	let insertStatusText= document.getElementById("insertStatusText");
 	//alert("Button click");
 	//resultFontEffect(insertStatusHeader);
-	if (isTextInputEmpty(titleText, authorText))
+	if (isTextInputEmpty(titleText) || isTextInputEmpty(authorText))
 	{
 		//alert("Skriv i båda textboxarna!")
 		//alert("Error: Fill in both textboxes");
-		insertStatusText.innerHTML = "Please fill in both text fields!";
+		insertStatusText.innerHTML = "Please fill in <strong>ALL</strong> text fields!";
 	}
 	else
 	{
 
 		//alert("Lägger till bok!");
-		let requestUrl2=baseUrl+"?op=insert&key=" + apiKey + "&title=" + titleText.value + "&author=" + authorText.value;
+		let requestUrl2=baseUrl+"?op=insert&key=" + apiKey + "&title=" + titleText + "&author=" + authorText;
 		// Ajax Fetch here!
 		//alert(requestUrl2);
 		fetchUrl(requestUrl2, insertStatusText);
@@ -227,7 +229,6 @@ addBtn.addEventListener("click", function() {
 //................................................
 
 //Tag bort en bok:
-
 
 
 //"navvigations-knapp" visar togglar "funktionalitet"
@@ -244,7 +245,8 @@ toggleFunctionalities('showDeleteBook');
 	clrBtDelete.addEventListener("click", function(event){
 
 		let textbox1Del = document.getElementById("textDelete");
-		clearTextBox(textbox1Del);
+		let statusDelete = document.getElementById('insertDeleteText');
+		clearTextBox(textbox1Del, statusDelete);
 	});
 
 
@@ -261,10 +263,18 @@ let keyDelete = localStorage.getItem('mystorage');
 let idDelete = document.getElementById("textDelete").value
 let statusDelete = document.getElementById('insertDeleteText');
 
-let finalUrlDelete = `${urlDelete}?op=${opDelete}&key=${keyDelete}&id=${idDelete}`;
-console.log('Hämtar data från: ' + finalUrlDelete);
+if (isTextInputEmpty(idDelete))
+{
+	statusDelete.innerHTML = "Please fill in <strong>ALL</strong> text fields!";
+}
 
-fetchUrl(finalUrlDelete, statusDelete);
+else
+{
+	let finalUrlDelete = `${urlDelete}?op=${opDelete}&key=${keyDelete}&id=${idDelete}`;
+	console.log('Hämtar data från: ' + finalUrlDelete);
+
+	fetchUrl(finalUrlDelete, statusDelete);
+}
 });
 //................................................
 //................................................
@@ -295,10 +305,10 @@ function loopBookList(obj, output)
 	//alert(ul.innerHTML);
 }
 
-
-function isTextInputEmpty(input1, input2)
+// tar in två textinputs.
+function isTextInputEmpty(input)
 {
-	if (input1.value.length === 0 || input2.value.length === 0)
+	if (input.length === 0)
 	{
 		return true;
 	}
@@ -308,7 +318,8 @@ function isTextInputEmpty(input1, input2)
 	}
 }
 
-function fetchUrl(requestUrl, element)
+// Fetch requests för Insert, Update & Delete!
+let fetchUrl = function(requestUrl, element)
 {
 		fetch(requestUrl)  // Funktionen fetch körs direkt
 		.then(function(response)
@@ -325,41 +336,61 @@ function fetchUrl(requestUrl, element)
 
 			if (json.status === "success")
 			{
-				element.innerHTML = json.status;
-				console.log("Fetch status: " + json.status);
-				failedFetchRequests = 0;
+				element.innerHTML = `Operation ${json.status}full after ${failedFetchRequests} tries!`;
+				console.log("Operation " + json.status + "full after " + failedFetchRequests + "tries!");
+				failedFetchRequests = 1;
 				//alert(json.status);
 
 			}
 			else
 			{
 				// Testa 10 gånger!
-				ajaxRepeat(json, requestUrl, element);
+				ajaxRepeat(json, requestUrl, element, fetchUrl);
 			}
 
 		}).catch(function(error)
 		{
-	  		element.innerHTML = 'There has been a problem with your fetch operation:<br><br>' + error.message;
+	  		element.innerHTML = 'There has been a problem with your fetch operation:<br><br> ' + error.message;
 	  		//alert('There has been a problem with your fetch operation:<br><br>' + error.message);
 		});
-}
+}	
+
 
 	// FIXAR JAG!
-	function fetchUrlSelect(selectUrl, element)
+	// Hämtar alla böcker!
+	let fetchUrlSelection = function(selectUrl, status)
 	{
+		let output = document.getElementById('response');
+
 		fetch(selectUrl)
 		.then(function(response)
 		{
-
+			if(response.ok)
+			{
+				return response.json();
+			}
 		})
 		.then(function(json)
 		{
+			if(json.status === "success")
+			{
+				status.innerHTML = `Operation ${json.status}full after ${failedFetchRequests} tries!`;
+				loopBookList(json, output);
+				failedFetchRequests = 1;
+				//alert(json.status);
+			}
+			else
+			{
+				// Testa 10 gånger!
+				ajaxRepeat(json, selectUrl, status, fetchUrlSelection);
+			}
 
 		}).catch(function(error)
 		{
-
+			element.innerHTML = 'There has been a problem with your fetch operation:<br><br> ' + error.message;
 		});
 	}
+
 
 // togglar synligheten för "funktionaliteten" i fråga
 function toggleFunctionalities(showFunctionality){
@@ -374,9 +405,6 @@ function toggleFunctionalities(showFunctionality){
 	}
   }
 
-
-
-
 	//ändrar bakgrundfärg när textboxar är markerade och i fokus
 	function changeTextBoxBackgroundColor(textboxToChange){
 			let textboxcCangeFocus = document.getElementById(textboxToChange);
@@ -388,36 +416,38 @@ function toggleFunctionalities(showFunctionality){
 			});
 	}
 
-
-
-
-	function ajaxRepeat(json, requestUrl, element)
+	function ajaxRepeat(json, requestUrl, element, callback)
 	{
 
-		if (failedFetchRequests < 10)
+		if (failedFetchRequests <= 10)
 		{
 			failedFetchRequests ++;
-			element.innerHTML = "Fetch status: " + json.status + " Number of tries: " + failedFetchRequests + " Description: " + json.message;
+			//element.innerHTML = "Fetch status: " + json.status + " Number of tries: " + failedFetchRequests + " Description: " + json.message;
 			//alert("Fetch status: " + json.status + " Number of tries: " + failedFetchRequests + " Description: " + json.message);
-			fetchUrl(requestUrl, element);
+			callback(requestUrl, element);
 		}
 		else
 		{
-			element.innerHTML = "Maximum amount of tries exceeded, Operation Failed!";
-			console.log("Maximum amount of tries exceeded, Operation Failed!");
-			failedFetchRequests = 0;
+			element.innerHTML = "Maximum amount of tries exceeded! " + json.status + ":  " + json.message;
+			console.log("Maximum amount of tries exceeded! " + json.status + ":  " + json.message);
+			failedFetchRequests = 1;
 			return;
-		}
-
+		}	
+			
 	}
-
 
 
 	//clear textboxes
-	function clearTextBox(textbox){
+	function clearTextBox(textbox, statusText){
+
 		textbox.value = "";
+		statusText.innerHTML = "";
 	}
 
+	function clearStatusText(statusText){
+		
+		statusText.innerHTML = "";
+	}
 
 
 
