@@ -85,19 +85,20 @@ fetch(finalUrl)
   console.log('svar som objekt',obj);
 	let output = document.getElementById('response');
 	let status = document.getElementById('status');
+	let mess = document.getElementById('mess');
 
 if(obj.status === "success")
 {
 	loopBookList(obj, output);
 
-	status.innerHTML = "<strong>Status: </strong> " + obj.status
-	+ "   " + "<strong>Meddelande:</strong> " + obj.message;
+	status.innerHTML = "<strong>Status: </strong> " + obj.status;
+	mess.innerHTML = "<strong>Meddelande:</strong> " + obj.message;
 
 }
 else
 {
-	status.innerHTML = "<strong>Status: </strong> " + obj.status
-+ "   " + "<strong>Meddelande:</strong> " + obj.message;
+	status.innerHTML = "<strong>Status: </strong> " + obj.status;
+	mess.innerHTML = "<strong>Meddelande:</strong> " + obj.message;
 
 	output.innerHTML = "";
 }

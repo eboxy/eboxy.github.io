@@ -24,12 +24,16 @@ header{
     }
 
 
+/* PILLA INTE!!!!!!!!!!!!!!!!! :  */
+
 /*tabell-cell*/
 div > div, div > main, div > aside {
 background-color: #ffffff;
 padding: 10px;
 flex: 1 1 auto;
 }
+
+
 
 
 /* vänstra kolumnen aka nav */
@@ -40,6 +44,8 @@ height: 574px;
 position: fixed;
 top:80px;
 }
+
+
 
 
 /* Stajla länkarna i nav-kolumnen */
@@ -87,6 +93,7 @@ height: 574px;
 
 /* formatering och dsign av de tre mitten-kolumnerna */
 
+/* PILLA INTE!!!!!!!!!!!!!!!!! :  */
 .row{
 display:flex;
 flex-direction: row;
@@ -117,7 +124,29 @@ footer{
 /*  positionering av element i "funktionaliteterna"  */
 
 
-/* Upate:  */
+
+/* PILLA INTE!!!!!!!!!!!!!!!!! :  */
+
+/* list start:  */
+
+#moveListMessages{
+  position: relative;
+  left: -20px;
+  top: -20px;
+}
+
+#bookListMove{
+  position: relative;
+  left: -10px;
+  top: -40px;
+}
+
+/* list end */
+
+
+
+/* Upate start:  */
+
 #updateBookTitle{
 position: relative;
 top:36px;
@@ -132,7 +161,7 @@ right: 330px;
 
 .results{
   position: relative;
-  top: 130px;
+  top: 110px;
   right: 0px;
 }
 
@@ -148,6 +177,35 @@ right: 330px;
   right: 500px;
 }
 
+/* Upate end:  */
+
+
+
+/* add start:  */
+
+#moveAddButtons{
+  position: relative;
+  top: 0px;
+  right: 10px;
+}
+
+.resultsAdd{
+  position: relative;
+  top: 0px;
+  right: 0px;
+}
+/* add end:  */
+
+
+/*  delete start: */
+
+#moveDeleButtons{
+  position: relative;
+  top: 5px;
+  right: 0px;
+}
+
+/*  delete end*/
 
 
 /*Layout och design av huvdinnehållet */
@@ -167,9 +225,13 @@ right: 330px;
 
 
 /* Media query endast kvar pga annars funkar inte apikey-visibility */
-/*MÅSTE VARA KVAR!*/
+
+/* PILLA INTE!!!!!!!!!!!!!!!!! :  */
  @media (max-width: 750px) {}
 
+
+
+/* PILLA INTE!!!!!!!!!!!!!!!!! :  */
 
 /* sätt "funktionaliteterna" i defaultläge till ej synliga */
 

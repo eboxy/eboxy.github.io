@@ -69,12 +69,20 @@
     <div id="showGetBookList">
 
         <h2>Status för hämtning av boklista</h2>
-        <div id="status"></div>
 
-        <h2>Boklista</h2>
+        <div id="moveListMessages">
+            <div id="status"></div>
+            <div id="mess"></div>
+        </div>
 
-        <input  id="btn" type="button" value="GetBooks" />
-        <div id="response">
+        <div id="bookListMove">
+
+            <h2>Boklista</h2>
+
+            <input  id="btn" type="button" value="GetBooks" />
+            <div id="response">
+            </div>
+
         </div>
 
       </div>
@@ -94,12 +102,12 @@
               <input value="Update" type="button" id="updateButton">
               <input value="Clear" type="button" id="clrBtnUpdateBook" class="button">
             <div class="results">
+                <h2>Status för Update</h2>
+                <strong>Status:</strong>
 
-              <strong>Status:</strong>
-
-              <p id="updateStatusText">
-              </p>
-            </div>
+                <span id="updateStatusText">
+                </span>
+              </div>
 
             </form>
           </section>
@@ -115,18 +123,22 @@
                  <form class="forms" method="post">
                    <h2 class="crudType"> Add Book </h2>
                    <input class="textInput" id="input1" type="text" placeholder="Enter title">
-                   <input class="textInput" id="input2" type="text" placeholder="Enter author">
+                   <input class="textInput" id="input2" type="text" placeh/older="Enter author">
                    <div class="button-wrap">
-                  <input value="Add" type="button" id="addBtn" class="button">
-                  <input value="Clear" type="button" id="clrBtnAddBook" class="button">
+                  <div id="moveAddButtons">
+                    <input value="Add" type="button" id="addBtn" class="button">
+                    <input value="Clear" type="button" id="clrBtnAddBook" class="button">
+                </div>
                      <!-- <button id="reqapikey" class="button">Begär ny api nyckel</button>-->
                    </div>
-                   <div class="results">
+
+                    <h2>Status för Delete </h2>
+                   <div class="resultsAdd">
 
                     <strong>Status:</strong>;
 
-                     <p id="insertStatusText">
-                     </p>
+                     <span id="insertStatusText">
+                     </span>
                    </div>
                  </form>
               </section>
@@ -141,11 +153,15 @@
                     <h2 class="crudType"> Delete Book </h2>
                     <input class="textInput" id="textDelete" type="text" placeholder="Id: Book To Delete">
                     <div class="button-wrap"></div>
-                      <button id="buttonDelete" class="button">Delete Book</button>
-                      <button id="buttonClear" class="button">Clear</button>
 
-                      <h4 class="crudType">Status for Delete </h4>
-                      <div id="insertDeleteText"></div>
+                    <div id="moveDeleButtons">
+                        <button id="buttonDelete" class="button">Delete Book</button>
+                        <button id="buttonClear" class="button">Clear</button>
+                    </div>
+
+                      <h2 class="crudType">Status för Delete </h2>
+                      <strong>status:</strong>
+                      <span id="insertDeleteText"></span>
 
                   </section>
 
