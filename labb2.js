@@ -10,9 +10,9 @@ let clrBtnApiKey = document.getElementById("clearBtnApiKey");
 clrBtnApiKey.addEventListener("click", function(event){
 
 	let clearStatusApiKey = document.getElementById("statusApiKey");
-	
+
 	clearStatusText(clearStatusApiKey);
-	
+
 });
 
 
@@ -20,7 +20,7 @@ clrBtnApiKey.addEventListener("click", function(event){
 //"navvigations-knapp" visar togglar "funktionalitet"
 let apiKeyButton = document.getElementById("apiKeyVisibilityButton");
 apiKeyButton.addEventListener('click', function(){
-toggleFunctionalities('showAPiKey');
+toggleFunctionalities('showAPiKey', apiKeyButton);
 });
 
 
@@ -72,7 +72,7 @@ let clrListBtn = document.getElementById("clearBtnList");
 clrListBtn.addEventListener("click", function(event){
 
 	let fetchStatus = document.getElementById("status");
-	
+
 	clearStatusText(fetchStatus);
 });
 
@@ -83,7 +83,7 @@ clrListBtn.addEventListener("click", function(event){
 //"navvigations-knapp" visar togglar "funktionalitet"
 let listButton = document.getElementById("listVisibilityButton");
 listButton.addEventListener('click', function(){
-toggleFunctionalities('showGetBookList');
+toggleFunctionalities('showGetBookList', listButton);
 });
 
 
@@ -113,7 +113,7 @@ fetchUrlSelection(finalUrl, status);
 //"navvigations-knapp" visar togglar "funktionalitet"
 let updateButton = document.getElementById("updateVisibilityButton");
 updateButton.addEventListener('click', function(){
-toggleFunctionalities('showUpdateBook');
+toggleFunctionalities('showUpdateBook', updateButton);
 });
 
 
@@ -172,7 +172,7 @@ else
 //"navvigations-knapp" visar togglar "funktionalitet"
 let addButton = document.getElementById("addVisibilityButton");
 addButton.addEventListener('click', function(){
-toggleFunctionalities('showAddBook');
+toggleFunctionalities('showAddBook', addButton);
 });
 
 
@@ -234,7 +234,7 @@ addBtn.addEventListener("click", function() {
 //"navvigations-knapp" visar togglar "funktionalitet"
 let deleteButton = document.getElementById("deleteVisibilityButton");
 deleteButton.addEventListener('click', function(){
-toggleFunctionalities('showDeleteBook');
+toggleFunctionalities('showDeleteBook', deleteButton);
 });
 
 
@@ -353,7 +353,7 @@ let fetchUrl = function(requestUrl, element)
 	  		element.innerHTML = 'There has been a problem with your fetch operation:<br><br> ' + error.message;
 	  		//alert('There has been a problem with your fetch operation:<br><br>' + error.message);
 		});
-}	
+}
 
 
 	// FIXAR JAG!
@@ -393,17 +393,21 @@ let fetchUrl = function(requestUrl, element)
 
 
 // togglar synligheten för "funktionaliteten" i fråga
-function toggleFunctionalities(showFunctionality){
+function toggleFunctionalities(showFunctionality, buttonColorToggle){
 		let toggle = document.getElementById(showFunctionality);
 
 		if(toggle.style.display==='initial'){
 			toggle.style.display='none';
+			buttonColorToggle.style.backgroundColor = '#000000';
 		}
 		else
 		{
 		toggle.style.display='initial';
+		buttonColorToggle.style.backgroundColor = '#d9d9d9';
 	}
   }
+
+
 
 	//ändrar bakgrundfärg när textboxar är markerade och i fokus
 	function changeTextBoxBackgroundColor(textboxToChange){
@@ -432,8 +436,8 @@ function toggleFunctionalities(showFunctionality){
 			console.log("Maximum amount of tries exceeded! " + json.status + ":  " + json.message);
 			failedFetchRequests = 1;
 			return;
-		}	
-			
+		}
+
 	}
 
 
@@ -445,7 +449,7 @@ function toggleFunctionalities(showFunctionality){
 	}
 
 	function clearStatusText(statusText){
-		
+
 		statusText.innerHTML = "";
 	}
 
